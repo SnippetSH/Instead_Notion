@@ -1,0 +1,188 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Close Sidebar */
+.menu-trigger,
+.menu-trigger .bar {
+    transition: all .2s;
+    box-sizing: border-box;
+}
+
+.menu-trigger {
+    position: relative;
+    width: 10px;
+    height: 13px;
+}
+
+.menu-trigger .bar {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    border-radius: 2px;
+}
+
+.menu-trigger .bar:nth-of-type(1) {
+    top: 0;
+}
+
+.menu-trigger .bar:nth-of-type(2) {
+    top: 11px;
+}
+
+.menu-trigger .bar:nth-of-type(3) {
+    bottom: 0;
+}
+
+.menu-trigger:hover .bar:nth-of-type(1),
+.menu-trigger:hover .bar:nth-of-type(3) {
+    width: 16px;
+}
+
+.menu-trigger:hover .bar:nth-of-type(1) {
+    -webkit-transform: translate(-1px, 5px) rotate(-45deg);
+    transform: translate(-1px, 5px) rotate(-45deg);
+}
+
+.menu-trigger:hover .bar:nth-of-type(3) {
+    -webkit-transform: translate(-1px, -5px) rotate(45deg);
+    transform: translate(-1px, -5px) rotate(45deg);
+}
+
+
+/* Open Sidebar */
+.menu-trigger-1,
+.menu-trigger-1 .bar {
+    transition: all .2s;
+    box-sizing: border-box;
+}
+
+.menu-trigger-1 {
+    position: relative;
+    width: 10px;
+    height: 13px;
+}
+
+.menu-trigger-1 .bar {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    border-radius: 2px;
+}
+
+.menu-trigger-1 .bar:nth-of-type(1) {
+    top: 0;
+}
+
+.menu-trigger-1 .bar:nth-of-type(2) {
+    top: 11px;
+}
+
+.menu-trigger-1 .bar:nth-of-type(3) {
+    bottom: 0;
+}
+
+.menu-trigger-1:hover .bar:nth-of-type(1),
+.menu-trigger-1:hover .bar:nth-of-type(3) {
+    width: 16px;
+}
+
+.menu-trigger-1:hover .bar:nth-of-type(1) {
+    -webkit-transform: translate(10px, 5px) rotate(45deg);
+    transform: translate(10px, 5px) rotate(45deg);
+}
+
+.menu-trigger-1:hover .bar:nth-of-type(3) {
+    -webkit-transform: translate(10px, -5px) rotate(-45deg);
+    transform: translate(10px, -5px) rotate(-45deg);
+}
+
+/* DropDown */
+.br-ddi {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+/* Login */
+.id-pass {
+    width: 75%;
+    position: relative;
+}
+
+.in {
+    font-size: 15px;
+    color: #222222;
+    width: 100%;
+    border: none;
+    border-bottom: solid #aaaaaa 1px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    position: relative;
+    background: none;
+    z-index: 5;
+}
+
+.in::-webkit-input-placeholder {
+    overflow: hidden;
+    padding-left: 9px;
+}
+
+.in::placeholder {
+    color: #aaaaaa;
+}
+
+.in:focus {
+    outline: none;
+}
+
+.in-span {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0%;
+    /* right로만 바꿔주면 오 - 왼 */
+    background-color: #666;
+    width: 0;
+    height: 2px;
+    border-radius: 2px;
+    transition: 0.5s;
+}
+
+.in-label {
+    position: absolute;
+    color: #aaa;
+    left: 10px;
+    font-size: 18px;
+    bottom: 8px;
+    transition: all .2s;
+}
+
+.in:focus~.in-label,
+.in:valid~.in-label {
+    font-size: 14px;
+    bottom: 40px;
+    color: #666;
+    font-weight: bold;
+}
+
+.in:focus~.in-span,
+.in:valid~.in-span {
+    width: 100%;
+}
+
+#sign-in {
+    transition: all 0.5s ease;
+}
+#sign-up {
+    transition: all 0.5s ease;
+}
+
+.trans-translate {
+    transition: transform 0.5s;
+}
+
+.trans-opacity {
+    transition: opacity 0.5s;
+}
