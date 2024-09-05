@@ -6,7 +6,7 @@ import classNames from "classnames";
 interface DropDownProps extends Props {
   isTheme: boolean;
   children: ReactElement<typeof DropDownItem | typeof DropDownTrigger>[];
-  width: string;
+  width?: string;
 }
 
 export const DropDownTrigger = ({ className, children }: Props) => {
@@ -19,7 +19,7 @@ export const DropDownTrigger = ({ className, children }: Props) => {
 
 export const DropDownItem = ({ className, children }: Props) => {
   const combinedClasses = classNames(
-    'px-1 py-1 text-center',
+    'px-1 py-1 text-center my-1',
     className
   );
 
@@ -61,7 +61,7 @@ export const DropDownMenu = ({ className, children, isTheme, width }: DropDownPr
   }, [])
 
   const dropdownMenuClasses = classNames(
-    'text-left',
+    'text-left flex items-center',
     className
   );
 

@@ -31,7 +31,9 @@ export default {
         },
         "aquamarine": "rgb(83, 226, 169)",
         "aquablue": "rgb(83, 207, 226)",
-        "darkaquamarine": "rgb(77, 206, 137)"
+        "darkaquamarine": "rgb(77, 206, 137)",
+        "black2222": "#222222",
+        "grayaaaa": "#aaaaaa"
       },
       width: {
         '0.25': '25%',
@@ -83,6 +85,12 @@ export default {
         '0': '0',
         '50': '50%'
       }, 
+      padding: {
+        '2.5': '10px',
+      },
+      zIndex: {
+        '5': '5',
+      }
     },
   },
   plugins: [],

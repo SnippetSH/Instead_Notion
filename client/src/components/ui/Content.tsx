@@ -2,7 +2,7 @@ import type { Props } from '@/components/props'
 import { ThemeStore } from '@/api/store/themeStore'
 import classNames from 'classnames'
 
-export const Content = ({ children, className }: Props) => {
+export const Content = ({ children, className, style }: Props) => {
     const theme = ThemeStore(state => state.theme)
 
     const contentClasses = classNames(
@@ -15,7 +15,7 @@ export const Content = ({ children, className }: Props) => {
     );
 
     return (
-        <div className={contentClasses}>
+        <div className={contentClasses} style={style}>
             {children}
         </div>
     )

@@ -2,7 +2,7 @@ import { Props } from '../props';
 import { ThemeStore } from '@/api/store/themeStore';
 import classNames from 'classnames';
 
-export const Button = ({ className, onClick, children }: Props) => {
+export const Button = ({ className, onClick, children, style }: Props) => {
     const theme = ThemeStore(state => state.theme)
     const buttonClass = classNames(
         'text-center text-white font-semibold py-2 px-4 bg-dark-900/20 rounded-lg hover:shadow-base hover:translate-y-0.5 transition-all duration-100 shadow-md border-none',
@@ -11,7 +11,7 @@ export const Button = ({ className, onClick, children }: Props) => {
     )
 
     return (
-        <button className={buttonClass} onClick={onClick}>
+        <button className={buttonClass} onClick={onClick} style={style}>
             {children}
         </button>
     )

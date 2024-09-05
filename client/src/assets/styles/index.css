@@ -2,6 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Transition */
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-enter-active {
+    opacity: 1;
+    transition: opacity 300ms ease-in;
+}
+
+.fade-exit {
+    opacity: 1;
+}
+
+.fade-exit-active {
+    opacity: 0;
+    transition: opacity 300ms ease-in;
+}
+
+.fade-enter-active,
+.fade-exit-active {
+    width: 100%;
+    height: 100%;
+}
+
 /* Close Sidebar */
 .menu-trigger,
 .menu-trigger .bar {
@@ -175,14 +200,295 @@
 #sign-in {
     transition: all 0.5s ease;
 }
+
 #sign-up {
     transition: all 0.5s ease;
 }
 
-.trans-translate {
-    transition: transform 0.5s;
+
+
+.container {
+    /* background-color: #fff; */
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+        0 10px 10px rgba(0, 0, 0, 0.22);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
 }
 
-.trans-opacity {
-    transition: opacity 0.5s;
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.container.right-panel-active .sign-in-container {
+    transform: translateX(100%);
+    opacity: 0;
+}
+
+.sign-up-container {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.container.right-panel-active .sign-up-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: show 0.6s;
+}
+
+@keyframes show {
+
+    0%,
+    49.99% {
+        opacity: 0;
+        z-index: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+}
+
+.container.right-panel-active .overlay-container {
+    transform: translateX(-100%);
+}
+
+.overlay {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    color: #FFFFFF;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: color 0.4s, background 0.4s, transform 0.6s ease-in-out;
+}
+
+.container.right-panel-active .overlay {
+    transform: translateX(50%);
+}
+
+.overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+    transform: translateX(-20%);
+}
+
+.container.right-panel-active .overlay-left {
+    transform: translateX(0);
+}
+
+.overlay-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+    transform: translateX(20%);
+}
+
+
+/* Doc */
+.doc-wrapper .ql-editor {
+    width: 100%;
+    padding: 0;
+    min-height: 320px;
+    font-size: 1.125rem;
+    line-height: 1.5;
+    background-color: transparent;
+    /* 배경색을 투명하게 설정 */
+}
+
+.doc-wrapper .ql-editor.ql-blank::before {
+    width: 100%;
+    left: 0;
+    color: #999;
+    /* placeholder 텍스트 색상 설정 */
+    font-style: italic;
+}
+
+/* TitleInputBlock 스타일 추가 */
+.title-input {
+    background-color: transparent;
+    /* 배경색을 투명하게 설정 */
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+/* DocWrapper 최소 높이 설정 */
+.doc-wrapper {
+    min-height: 400px;
+    /* 또는 원하는 높이로 설정 */
+}
+
+/* Quill 에디터 스타일 */
+.quill-editor {
+    height: 100%;
+    overflow-x: visible;
+}
+
+.ql-editor {
+    min-height: 300px;
+    background-color: transparent !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    height: 100%;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+}
+
+.ql-editor p {
+    /* color: white; */
+    white-space: pre-wrap !important;
+}
+
+.ql-editor.ql-blank::before {
+    /* color: rgba(255, 255, 255, 0.6) !important; */
+    font-style: italic;
+    white-space: normal !important;
+    pointer-events: none;
+    content: attr(data-placeholder);
+    position: absolute;
+}
+
+.ql-editor:not(.ql-blank)::before {
+    content: none;
+}
+
+/* placeholder 스타일 추가 */
+.ql-editor[data-placeholder]::before {
+    content: attr(data-placeholder);
+    position: absolute;
+    left: 0;
+    right: 0;
+    /* color: rgba(255, 255, 255, 0.6); */
+    pointer-events: none;
+}
+
+.custom-placeholder .ql-editor.ql-blank::before {
+    /* color: rgba(255, 255, 255, 0.6); */
+    content: attr(data-placeholder);
+    font-style: italic;
+    pointer-events: none;
+    position: absolute;
+}
+
+.custom-placeholder .ql-editor:not(.ql-blank)::before {
+    content: none;
+}
+
+/* 기존 스타일 유지 */
+
+.editor-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 20px;
+}
+
+.title-input-wrapper {
+    margin-bottom: 20px;
+}
+
+.ql-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    margin-bottom: 20px;
+}
+
+.custom-toolbar {
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.custom-toolbar button, .custom-toolbar select {
+    background-color: transparent;
+    border: none;
+    /* color: white; */
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.custom-toolbar button:hover, .custom-toolbar select:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+}
+
+.ql-bubble .ql-editor {
+    padding: 0;
+}
+
+.ql-bubble .ql-tooltip {
+    z-index: 1000;
+    white-space: nowrap; /* 툴팁이 줄바꿈되지 않도록 설정 */
+    overflow: visible; /* 툴팁의 오버플로우를 보이도록 설정 */
+}
+
+.ql-bubble .ql-tooltip[data-mode="link"]::before,
+.ql-bubble .ql-tooltip[data-mode="formula"]::before,
+.ql-bubble .ql-tooltip[data-mode="video"]::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border: 6px solid transparent;
+    border-bottom-color: #fff;
+    z-index: -1;
 }

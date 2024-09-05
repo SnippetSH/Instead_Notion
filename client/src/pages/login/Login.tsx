@@ -16,6 +16,9 @@ export const Login = () => {
         setID("");
         setPassword("");
         setName("");
+        if (isSignedIn) {
+            navigate("/");
+        }
     }, [isSignIn]);
 
     useLayoutEffect(() => {

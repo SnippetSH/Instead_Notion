@@ -11,7 +11,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   }, [theme]);
 
   return (
-    <div className={`w-screen h-screen ${theme === 'dark' ? 'bg-dark-700' : 'bg-white-500'}`}>
+    <div className={`w-screen h-screen transition-all duration-400 ${theme === 'dark' ? 'bg-dark-700' : 'bg-white-500'}`}>
       {children}
     </div>
   );

@@ -5,7 +5,6 @@ import { RouterProvider } from 'react-router-dom'
 import { ThemeProvider } from './theme'
 import '../assets/styles/index.css'
 import { ThemeStore } from '@/api/store/themeStore'
-import { Header } from '@/components/Header'
 
 const App = () => {
   const theme = ThemeStore(state => state.theme);
@@ -15,11 +14,7 @@ const App = () => {
   }, [theme])
 
   return (
-    <div className='w-full h-full'>
-      <Header />
-      <RouterProvider router={router} />
-    </div>
-    
+    <RouterProvider router={router} />
   )
 }
 

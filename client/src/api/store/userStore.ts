@@ -7,7 +7,7 @@ const useUserStore = createSelectors(create<TUserState & TUserActions>()(persist
     name: 'Ryu',
     KKEUJEOK: 'ggu ggu',
     session: '1234567890',
-    isSignedIn: false,
+    isSignedIn: true,
     setUser: (user: TUserState) => set({ ...user, isSignedIn: true }),
 }), {
     name: 'user',
