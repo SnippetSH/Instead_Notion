@@ -1,4 +1,5 @@
 import classNames from 'classnames';
+import { ThemeStore } from '@/api/store/themeStore';
 
 interface InputProps {
     type?: string;
@@ -12,6 +13,8 @@ interface InputProps {
 }
 
 export const Input: React.FC<InputProps> = ({ type = 'text', value, onChange = () => {}, onKeyDown = () => {}, placeholder, required, className = '', label }) => {
+    const theme = ThemeStore(state => state.theme);
+
     const inputClasses = classNames(
         'w-3/4 relative my-3.5',
         className
@@ -26,7 +29,7 @@ export const Input: React.FC<InputProps> = ({ type = 'text', value, onChange = (
                 onKeyDown={onKeyDown}
                 placeholder={placeholder}
                 required={required}
-                className={`in`}
+                className={`in ${theme === 'light' ? 'text-black' : 'text-pure-white'}`}
             />
             <label className="in-label">{label}</label>
             <span className="in-span"></span>

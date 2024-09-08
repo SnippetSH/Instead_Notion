@@ -1,4 +1,4 @@
-import { SideBarContainer, SideBarHeader, SideBarContent, Br, DropDownMenu, DropDownTrigger, DropDownItem, Button } from "@/components/ui"
+import { SideBarContainer, SideBarHeader, SideBarContent, SideBarFooter, Br, DropDownMenu, DropDownTrigger, DropDownItem, Button } from "@/components/ui"
 import { Sun, Moon } from "lucide-react"
 import { ThemeStore } from "@/api/store/themeStore"
 import { useState } from "react"
@@ -12,10 +12,11 @@ export const Header = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const { name, KKEUJEOK, isSignedIn } = useUserStore(state => ({
+  const { name, KKEUJEOK, isSignedIn, setUser } = useUserStore(state => ({
     name: state.name,
     KKEUJEOK: state.KKEUJEOK,
-    isSignedIn: state.isSignedIn
+    isSignedIn: state.isSignedIn,
+    setUser: state.setUser
   }), shallow)
 
   const theme = ThemeStore(state => state.theme)
@@ -46,12 +47,29 @@ export const Header = () => {
               <div className="text-center">
                 <Br className="h-3" />
                 <h1>Please sign in</h1>
+                <Br className="h-1" />
+                <Button onClick={() => navigate('/login')}>Sign in</Button>
               </div>
             )}
           </SideBarHeader>
           <SideBarContent>
             <Br />
           </SideBarContent>
+          <SideBarFooter>
+            {
+              isSignedIn ? (
+                <Button onClick={() => {
+                  localStorage.removeItem("user");
+                  setUser({
+                    name: '',
+                    KKEUJEOK: 'TODO',
+                    session: '',
+                    isSignedIn: false
+                  })
+                }}>Logout</Button>
+              ) : null
+            }
+          </SideBarFooter>
         </SideBarContainer>
 
         <button onClick={toggleSidebar} className={`menu-trigger-1 p-3 m-3 ${isSidebarOpen ? 'hidden opacity-0' : 'inline-block opacity-100'} transition-all duration-500`}>

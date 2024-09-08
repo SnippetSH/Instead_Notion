@@ -4,31 +4,43 @@ import { ThemeStore } from "@/api/store/themeStore";
 
 
 export const LoginView = (
-  { isSignIn, setIsSignIn, ID, setID, Password, setPassword, Name, setName }: TLoginProps
+  props: TLoginProps
 ) => {
   const theme = ThemeStore(state => state.theme);
+  const { handleSignIn, isSignIn, setIsSignIn, ID, setID, Password, setPassword, Name, setName, isSendCode, handleSendCode, Code, setCode, isVerify, handleVerify, handleSignUp } = props;
 
   return (
     <div className={`w-full h-full flex items-center justify-center`}>
       <div className={`container ${isSignIn ? '' : 'right-panel-active'}`}>
         <div className="form-container sign-up-container">
-          <form action="#" className="h-full flex flex-col items-center justify-center">
+          <div className="h-full flex flex-col items-center justify-center">
             <h1 className="font-bold text-2xl">Create Account</h1>
             <Br />
             <Input required label="Name" value={Name} onChange={(e) => setName(e.target.value)} />
-            <Input required label="ID" value={ID} onChange={(e) => setID(e.target.value)} />
-            <Input required label="Password" value={Password} onChange={(e) => setPassword(e.target.value)} />
-            <Button>Sign Up</Button>
-          </form>
+            <div className="flex flex-row gap-2 items-center w-3/4">
+              <Input required label="Email" value={ID} onChange={(e) => setID(e.target.value)} />
+              <Button disabled={isVerify} className="w-0.35 text-sm whitespace-nowrap" onClick={handleSendCode} style={{ height: '2.5rem', padding: '0.5rem 0.3rem'}}>Send Code</Button>
+            </div>
+            {isSendCode && 
+              (
+                <div className="flex flex-row gap-2 items-center w-3/4">
+                  <Input required label="Code" value={Code} onChange={(e) => setCode(e.target.value)} />
+                  <Button disabled={isVerify} className="w-0.35 text-sm whitespace-nowrap" onClick={handleVerify} style={{ height: '2.5rem', padding: '0.5rem 0.3rem'}}>Verify</Button>
+                </div>
+              )
+            }
+            <Input required label="Password" type="password" value={Password} onChange={(e) => setPassword(e.target.value)} />
+            <Button onClick={handleSignUp}>Sign Up</Button>
+          </div>
         </div>
         <div className="form-container sign-in-container">
-          <form action="#" className="h-full flex flex-col items-center justify-center">
+          <div className="h-full flex flex-col items-center justify-center">
             <h1 className="font-bold text-2xl">Sign in</h1>
             <Br />
-            <Input required label="ID" value={ID} onChange={(e) => setID(e.target.value)} />
-            <Input required label="Password" value={Password} onChange={(e) => setPassword(e.target.value)} />
-            <Button>Sign In</Button>
-          </form>
+            <Input required label="Email" value={ID} onChange={(e) => setID(e.target.value)} />
+            <Input type="password" required label="Password" value={Password} onChange={(e) => setPassword(e.target.value)} />
+            <Button onClick={() => handleSignIn()}>Sign In</Button>
+          </div>
         </div>
         <div className="overlay-container">
           <div 
